@@ -54,7 +54,7 @@
         .oc-title h1 { color: #ffffff; font-size: 22px; margin-bottom: 4px; letter-spacing: -0.5px; }
         .oc-title p { color: #2a7b73; font-size: 11px; font-weight: bold; letter-spacing: 2px; }
 
-        /* 메뉴 네비게이션 버튼 (일본어로 전면 개정) */
+        /* 메뉴 네비게이션 버튼 */
         .nav-menu { margin-top: 30px; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
         .nav-btn { 
             background: none; border: none; color: #718096; text-align: left; 
@@ -135,6 +135,18 @@
         }
         .relation-info { width: 100%; }
 
+        /* 📑 [추가] 잔화비도 전국 지부 연합 전용 스타일 구조 */
+        .branch-list { display: flex; flex-direction: column; gap: 18px; margin-top: 15px; }
+        .branch-card { background: rgba(18, 22, 26, 0.6); padding: 22px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.02); }
+        .branch-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .branch-region { font-size: 16px; font-weight: bold; color: #ffffff; letter-spacing: -0.5px; }
+        .branch-name { font-size: 15px; color: #93e1d8; font-weight: bold; }
+        .branch-meta-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+        .branch-roster { display: flex; flex-wrap: wrap; gap: 10px; border-top: 1px dashed rgba(255,255,255,0.04); padding-top: 14px; }
+        .roster-badge { background: rgba(42, 123, 115, 0.06); border: 1px solid rgba(42, 123, 115, 0.2); padding: 6px 12px; border-radius: 4px; display: flex; gap: 8px; align-items: center; }
+        .badge-job { font-size: 11px; color: #2a7b73; font-weight: bold; }
+        .badge-name { font-size: 13px; color: #cbd5e0; }
+
         /* 📱 [모바일 환경 전용 최적화 레이아웃] */
         @media (max-width: 768px) {
             body { flex-direction: column; overflow-y: auto; height: auto; }
@@ -147,7 +159,6 @@
             .oc-portrait { width: 80px; height: 80px; border-radius: 50%; margin-bottom: 0; box-shadow: none; }
             .oc-title h1 { font-size: 18px; }
             
-            /* 모바일 카테고리 메뉴 세로 직렬 배치 세팅 */
             .nav-menu { 
                 flex-direction: column; 
                 gap: 6px; 
@@ -167,10 +178,11 @@
             }
             
             .main-content { padding: 35px 20px; overflow-y: visible; }
-            .info-grid, .relation-grid { grid-template-columns: 1fr; gap: 16px; }
+            .info-grid, .relation-grid, .branch-meta-grid { grid-template-columns: 1fr; gap: 14px; }
             
             .org-dashboard { flex-direction: column; align-items: center; gap: 16px; }
             .org-logo-box { width: 100%; max-width: 240px; height: 240px; }
+            .branch-roster { flex-direction: column; align-items: stretch; }
         }
     </style>
 </head>
@@ -189,7 +201,6 @@
             </div>
         </div>
 
-        <!-- 🌸 영어를 완전히 제거하고 묵직한 한자식 일본어 카테고리로 교체 -->
         <div class="nav-menu">
             <button class="nav-btn active" onclick="openTab(event, 'profile')">身上調書</button>
             <button class="nav-btn" onclick="openTab(event, 'organization')">長谷川組</button>
@@ -199,7 +210,6 @@
         <div class="audio-box">
             <div class="audio-title">🎵 夜に溶ける (밤에 녹아내리는)</div>
             <audio id="ocBgm" src="../「夜に溶ける (밤에 녹아내리는)」.mp3" loop autoplay></audio>
-            <!-- 영문 PLAY/PAUSE 문구 제거 -->
             <button class="bgm-btn" onclick="toggleBgm()">音曲 演奏 / 停止</button>
         </div>
     </div>
@@ -299,7 +309,6 @@
             <h2>相関系譜 (인물 관계보)</h2>
             
             <div class="relation-grid">
-                
                 <!-- 오야붕: 하세가와 에이지 -->
                 <div class="relation-card">
                     <img class="relation-img" src="../KakaoTalk_20260630_120048729_01.png" alt="하세가와 에이지">
@@ -317,6 +326,101 @@
                         <div class="info-label">勘定方 幹部 (칸죠가타 간부)</div>
                         <div class="info-value" style="font-weight: bold; font-size: 18px; color: #ffffff; margin-bottom: 6px;">아사히나 소우 (朝比奈 蒼)</div>
                         <p style="font-size: 13px; color: #a0aec0; line-height: 1.6;">오야붕 아래에서 조직의 자금 흐름을 완벽히 통제하는 인물. 직속 보좌인 켄지를 대동하여 잔혹하고 철저한 연쇄 테스트와 집행 업무를 은밀히 수용 및 수행한다.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🌸 [요청사항 반영] 하단에 전국 연합 조직 '잔화비도' 대시보드 조서 신설 -->
+            <h3 style="margin-top: 45px; border-color: #e53e3e; color: #f56565; font-size: 18px; letter-spacing: 1px;">殘花悲刀 (전국 광역 연합 계보)</h3>
+            <div class="branch-list">
+                
+                <!-- 교토 지부 -->
+                <div class="branch-card">
+                    <div class="branch-header">
+                        <span class="branch-region">京都 支部 (교토 지부)</span>
+                        <span class="branch-name">草薙会 (쿠사나기회)</span>
+                    </div>
+                    <div class="branch-meta-grid">
+                        <div class="info-item"><div class="info-label">組織象徴</div><div class="info-value">부채</div></div>
+                        <div class="info-item"><div class="info-label">内部風土</div><div class="info-value">전통을 중시, 엄격한 서열</div></div>
+                        <div class="info-item"><div class="info-label">組織口号</div><div class="info-value">쿠사나기의 이름이 곧 명예다.</div></div>
+                    </div>
+                    <div class="branch-roster">
+                        <div class="roster-badge"><span class="badge-job">会長</span><span class="badge-name">쿠사나기 신이치 (草薙 真一)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">하나오카 카나토 (花岡 奏人)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">사카키 쿄야 (榊 京也)</span></div>
+                    </div>
+                </div>
+
+                <!-- 도쿄 지부 -->
+                <div class="branch-card">
+                    <div class="branch-header">
+                        <span class="branch-region">東京 支部 (도쿄 지부)</span>
+                        <span class="branch-name">清玄司組 (세이겐지구미)</span>
+                    </div>
+                    <div class="branch-meta-grid">
+                        <div class="info-item"><div class="info-label">組織象徴</div><div class="info-value">늑대</div></div>
+                        <div class="info-item"><div class="info-label">内部風土</div><div class="info-value">자유, 개인 위주 활동</div></div>
+                        <div class="info-item"><div class="info-label">組織口号</div><div class="info-value">百折不屈 (백 번 꺾일지언정 절대 굽히지 않는다)</div></div>
+                    </div>
+                    <div class="branch-roster">
+                        <div class="roster-badge"><span class="badge-job">組長</span><span class="badge-name">세이겐지 료 (清玄司 凌)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">카에데시로 아키라</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">사치하라 렌지 (幸原 連二)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">오가사와라 슈지 (小笠原 修司)</span></div>
+                    </div>
+                </div>
+
+                <!-- 오사카 지부 -->
+                <div class="branch-card">
+                    <div class="branch-header">
+                        <span class="branch-region">大阪 支部 (오사카 지부)</span>
+                        <span class="branch-name">高山一会 (타카야마이치회)</span>
+                    </div>
+                    <div class="branch-meta-grid">
+                        <div class="info-item"><div class="info-label">組織象徴</div><div class="info-value">까마귀</div></div>
+                        <div class="info-item"><div class="info-label">内部風土</div><div class="info-value">신뢰와 의리를 중시하는 냉정한 조직</div></div>
+                        <div class="info-item"><div class="info-label">組織口号</div><div class="info-value">「義を違えず、影を違えず。」 (의를 저버리지 말고, 그림자를 저버리지 말라)</div></div>
+                    </div>
+                    <div class="branch-roster">
+                        <div class="roster-badge"><span class="badge-job">会長</span><span class="badge-name">타카야 노부마사 (鷹谷 信正)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">쿠죠 토오루 (九条 徹)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">사에토 유즈루 (冴戸 譲)</span></div>
+                    </div>
+                </div>
+
+                <!-- 나고야 지부 -->
+                <div class="branch-card">
+                    <div class="branch-header">
+                        <span class="branch-region">名古屋 支部 (나고야 지부)</span>
+                        <span class="branch-name">長谷川組 (하세가와구미)</span>
+                    </div>
+                    <div class="branch-meta-grid">
+                        <div class="info-item"><div class="info-label">組織象徴</div><div class="info-value">음양</div></div>
+                        <div class="info-item"><div class="info-label">内部風土</div><div class="info-value">철저한 성과주의, 전통이 공존하는 조직</div></div>
+                        <div class="info-item"><div class="info-label">組織口号</div><div class="info-value">돈은 진실이다.</div></div>
+                    </div>
+                    <div class="branch-roster">
+                        <div class="roster-badge"><span class="badge-job">親分</span><span class="badge-name">하세가와 에이지 (長谷川 栄二)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">아사히나 소우 (朝比奈 蒼)</span></div>
+                    </div>
+                </div>
+
+                <!-- 후쿠오카 지부 -->
+                <div class="branch-card">
+                    <div class="branch-header">
+                        <span class="branch-region">福岡 支部 (후쿠오카 지부)</span>
+                        <span class="branch-name">久世会 (쿠제회)</span>
+                    </div>
+                    <div class="branch-meta-grid">
+                        <div class="info-item"><div class="info-label">組織象徴</div><div class="info-value">여우 (여우가면)</div></div>
+                        <div class="info-item"><div class="info-label">内部風土</div><div class="info-value">조용하고 은밀하며 실수가 용납되지 않는 조직</div></div>
+                        <div class="info-item"><div class="info-label">組織口号</div><div class="info-value">花下に刃。 (꽃 아래에 칼날)</div></div>
+                    </div>
+                    <div class="branch-roster">
+                        <div class="roster-badge"><span class="badge-job">堂主</span><span class="badge-name">쿠제 리오 (久世 理央)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">시라누이 리츠 (不知火 律)</span></div>
+                        <div class="roster-badge"><span class="badge-job">幹部</span><span class="badge-name">키리시마 슈우 (霧島 修)</span></div>
                     </div>
                 </div>
 
@@ -413,8 +517,3 @@
     </script>
 </body>
 </html>
-```eof
-
-소우의 1930년대 느와르 감성을 한층 더 깊게 살리기 위해 영어를 일절 배제하고 묵직한 일본어 한자 타이틀과 빗소리 효과를 적용한 최종 업그레이드 코드가 완벽히 적용되었습니다.
-
-커밋하신 뒤 1~2분 정도 후에 강력 새로고침(`Ctrl + F5`) 하거나 모바일 스마트폰으로 접속하셔서 확인해 보세요! 확실히 영어보다 한자가 분위기를 압도하는 맛이 날 겁니다. 혹시 추가하고 싶은 설정이 있으시다면 언제든 편하게 말씀해 주세요!
