@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>내 OC의 프로필 안내서</title>
+    <style>
+        /* 여기서 사이트의 분위기(색상, 글꼴 등)를 바꿀 수 있어요! */
+        body { background-color: #f5f7fa; font-family: 'Malgun Gothic', sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); text-align: center; max-width: 350px; width: 100%; }
+        .oc-img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 4px solid #ff758c; }
+        h1 { color: #333; margin: 15px 0 5px 0; }
+        .info { color: #666; font-size: 14px; margin-bottom: 20px; }
+        .story { color: #444; font-size: 15px; line-height: 1.6; background: #fafafa; padding: 15px; border-radius: 10px; }
+        .bgm-btn { margin-top: 25px; padding: 10px 20px; background: #ff758c; color: white; border: none; border-radius: 25px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+        .bgm-btn:hover { background: #ff5274; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- 1. 캐릭터 이미지 (나중에 바꿀 수 있어요) -->
+        <img class="oc-img" src="char_img.png" alt="OC 이미지">
+        
+        <!-- 2. 캐릭터 프로필 설정 -->
+        <h1>캐릭터 이름</h1>
+        <div class="info">나이: ??세 | 성별: ?? | 키: ???cm</div>
+        
+        <p class="story">
+            "여기에 캐릭터의 한 줄 대사나 성격, 짧은 배경 스토리를 적어주세요. 썰을 풀어도 좋습니다!"
+        </p>
+
+        <!-- 3. 음악(BGM) 플레이어 -->
+        <audio id="ocBgm" src="bgm.mp3" loop></audio>
+        <button class="bgm-btn" onclick="toggleBgm()">🎵 BGM 재생 / 일시정지</button>
+    </div>
+
+    <script>
+        function toggleBgm() {
+            var myAudio = document.getElementById("ocBgm");
+            if (myAudio.paused) { myAudio.play(); } else { myAudio.pause(); }
+        }
+    </script>
+</body>
+</html>
